@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فرمول‌های فیزیک دبیرستان</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap');
+        body {
+            font-family: 'Vazirmatn', sans-serif;
+        }
+        .formula-card {
+            transition: all 0.3s ease;
+            border-right: 4px solid transparent;
+        }
+        .formula-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border-right-color: #3B82F6;
+        }
+        .category-btn {
+            transition: all 0.3s ease;
+        }
+        .category-btn.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            transform: scale(1.05);
+        }
+        .search-box {
+            background: rgba(255,255,255,0.9);
+            backdrop-filter: blur(10px);
+        }
+        .floating-icon {
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 min-h-screen">
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-8 shadow-lg">
+        <div class="container mx-auto px-4 text-center">
+            <div class="floating-icon inline-block text-6xl mb-4">⚛️</div>
+            <h1 class="text-4xl md:text-5xl font-bold mb-2">فرمول‌های فیزیک دبیرستان</h1>
+            <p class="text-xl opacity-90">مجموعه کامل فرمول‌های فیزیک پایه دهم، یازدهم و دوازدهم</p>
+        </div>
+    </header>
+
+    <div class="container mx-auto px-4 py-8">
+        <!-- Search Box -->
+        <div class="search-box max-w-md mx-auto mb-8 p-4 rounded-2xl shadow-lg">
+            <input type="text" id="searchInput" placeholder="جستجوی فرمول..." 
+                   class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-blue-500 focus:outline-none text-lg">
+        </div>
+
+        <!-- Category Buttons -->
+        <div class="flex flex-wrap justify-center gap-3 mb-8">
+            <button class="category-btn active px-6 py-3 rounded-full bg-white shadow-md font-medium" onclick="filterCategory('all')">
+                همه فرمول‌ها
+            </button>
+            <button class="category-btn px-6 py-3 rounded-full bg-white shadow-md font-medium" onclick="filterCategory('mechanics')">
+                مکانیک
+            </button>
+            <button class="category-btn px-6 py-3 rounded-full bg-white shadow-md font-medium" onclick="filterCategory('waves')">
+                موج و نوسان
+            </button>
+            <button class="category-btn px-6 py-3 rounded-full bg-white shadow-md font-medium" onclick="filterCategory('thermodynamics')">
+                گرما و ترمودینامیک
+            </button>
+            <button class="category-btn px-6 py-3 rounded-full bg-white shadow-md font-medium" onclick="filterCategory('electricity')">
+                الکتریسیته
+            </button>
+            <button class="category-btn px-6 py-3 rounded-full bg-white shadow-md font-medium" onclick="filterCategory('optics')">
+                نور و اپتیک
+            </button>
+            <button class="category-btn px-6 py-3 rounded-full bg-white shadow-md font-medium" onclick="filterCategory('modern')">
+                فیزیک مدرن
+            </button>
+        </div>
+
+        <!-- Formulas Grid -->
+        <div id="formulasContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Mechanics Formulas -->
+            <div class="formula-card bg-white rounded-2xl p-6 shadow-lg" data-category="mechanics">
+                <div class="flex items-center mb-4">
+                    <span class="text-3xl ml-3">🚗</span>
+                    <h3 class="text-xl font-bold text-gray-800">سرعت متوسط</h3>
+                </div>
+                <div class="bg-blue-50 p-4 rounded-xl mb-3">
+                    <div class="text-center text-lg">$v = \frac{s}{t}$</div>
+                </div>
+                <p class="text-gray-600 text-sm">v: سرعت، s: مسافت، t: زمان</p>
+            </div>
+
+            <div class="formula-card bg-white rounded-2xl p-6 shadow-lg" data-category="mechanics">
+                <div class="flex items-center mb-4">
+                    <span class="text-3xl ml-3">📈</span>
+                    <h3 class="text-xl font-bold text-gray-800">شتاب</h3>
+                </div>
+                <div class="bg-blue-50 p-4 rounded-xl mb-3">
+                    <div class="text-center text-lg">$a = \frac{v - v_0}{t}$</div>
+                </div>
+                <p class="text-gray-600 text-sm">a: شتاب، v: سرعت نهایی، v₀: سرعت اولیه</p>
+            </div>
+
+            <div class="formula-card bg-white rounded-2xl p-6 shadow-lg" data-category="mechanics">
+                <div class="flex items-center mb-4">
+                    <span class="text-3xl ml-3">📏</span>
+                    <h3 class="text-xl font-bold text-gray-800">معادله حرکت</h3>
+                </div>
+                <div class="bg-blue-50 p-4 rounded-xl mb-3">
+                    <div class="text-center text-lg">$s = v_0 t + \frac{1}{2}at^2$</div>
+                </div>
+                <p class="text-gray-600 text-sm">s: جابجایی، v₀: سرعت اولیه، a: شتاب</p>
+            </div>
+
+            <div class="formula-card bg-white rounded-2xl p-6 shadow-lg" data-category="mechanics">
+                <div class="flex items-center mb-4">
+                    <span class="text-3xl ml-3">⚡</span>
+                    <h3 class="text-xl font-bold text-gray-800">قانون دوم نیوتن</h3>
+                </div>
+                <div class="bg-blue-50 p-4 rounded-xl mb-3">
+                    <div class="text-center text-lg">$F = ma$</div>
+                </div>
+                <p class="text-gray-600 text-sm">F: نیرو، m: جرم، a: شتاب</p>
+            </div>
+
+            <div class="formula-card bg-white rounded-2xl p-6 shadow-lg" data-category="mechanics">
+                <div class="flex items-center mb-4">
+                    <span class="text-3xl ml-3">🔄</span>
+                    <h3 class="text-xl font-bold text-gray-800">انرژی جنبشی</h3>
+                </div>
+                <div class="bg-blue-50 p-4 rounded-xl mb-3">
+                    <div class="text-center text-lg">$K = \frac{1}{2}mv^2$</div>
+                </div>
+                <p class="text-gray-600 text-sm">K: انرژی جنبشی، m: جرم، v: سرعت</p>
+            </div>
+
+            <div class="formula-card bg-white rounded-2xl p-6 shadow-lg" data-category="mechanics">
+                <div class="flex items-center mb-4">
+                    <span class="text-3xl ml-3">⬆️</span>
+                    <h3 class="text-xl font-bold text-gray-800">انرژی پتانسیل</h3>
+                </div>
+                <div class="bg-blue-50 p-4 rounded-xl mb-3">
+                    <div class="text-center text-lg">$U = mgh$</div>
+                </div>
+                <p class="text-gray-600 text-sm">U: انرژی پتانسیل، m: جرم، g: شتاب گرانش، h: ارتفاع</p>
+            </div>
+
+            <!-- Waves Formulas -->
+            <div class="formula-card bg-white rounded-2xl p-6 shadow-lg" data-category="waves">
+                <div class="flex items-center mb-4">
+                    <span class="text-3xl ml-3">🌊</span>
+                    <h3 class="text-xl font-bold text-gray-800">سرعت موج</h3>
+                </div>
+                <div class="bg-green-50 p-4 rounded-xl mb-3">
+                    <div class="text-center text-lg">$v = f\lambda$</div>
+                </div>
+                <p class="text-gray-600 text-sm">v: سرعت موج، f: فرکانس، λ: طول موج</p>
+            </div>
+
+            <div class="formula-card bg-white rounded-2xl p-6 shadow-lg" data-category="waves">
+                <div class="flex items-center mb-4">
+                    <span class="text-3xl ml-3">🔄</span>
+                    <h3 class="text-xl font-bold text-gray-800">دوره نوسان</h3>
+                </div>
+                <div class="bg-green-50 p-4 rounded-xl mb-3">
+                    <div class="text-center text-lg">$T = \frac{1}{f}$</div>
+                </div>
+                <p class="text-gray-600 text-sm">T: دوره، f: فرکانس</p>
+            </div>
+
+            <div class="formula-card bg-white rounded-2xl p-6 shadow-lg" data-category="waves">
+                <div class="flex items-center mb-4">
+                    <span class="text-3xl ml-3">🎯</span>
+                    <h3 class="text-xl font-bold text-gray-800">آونگ ساده</h3>
+                </div>
+                <div class="bg-green-50 p-4 rounded-xl mb-3">
+                    <div class="text-center text-lg">$T = 2\pi\sqrt{\frac{l}{g}}$</div>
+                </div>
+                <p class="text-gray-600 text-sm">T: دوره، l: طول آونگ، g: شتاب گرانش</p>
+            </div>
+
+            <!-- Thermodynamics Formulas -->
+            <div class="formula-card bg-white rounded-2xl p-6 shadow-lg" data-category="thermodynamics">
+                <div class="flex items-center mb-4">
+                    <span class="text-3xl ml-3">🌡️</span>
+                    <h3 class="text-xl font-bold text-gray-800">تبدیل دما</h3>
+                </div>
+                <div class="bg-red-50 p-4 rounded-xl mb-3">
+                    <div class="text-center text-lg">$C = \frac{5}{9}(F - 32)$</div>
+                </div>
+                <p class="text-gray-600 text-sm">C: سلسیوس، F: فارنهایت</p>
+            </div>
+
+            <div class="formula-card bg-white rounded-2xl p-6 shadow-lg" data-category="thermodynamics">
+                <div class="flex items-center mb-4">
+                    <span class="text-3xl ml-3">🔥</span>
+                    <h3 class="text-xl font-bold text-gray-800">گرمای ویژه</h3>
+                </div>
+                <div class="bg-red-50 p-4 rounded-xl mb-3">
+                    <div class="text-center text-lg">$Q = mc\Delta T$</div>
+                </div>
+                <p class="text-gray-600 text-sm">Q: گرما، m: جرم، c: گرمای ویژه، ΔT: تغییر دما</p>
+            </div>
+
+            <div class="formula-card bg-white rounded-2xl p-6 shadow-lg" data-category="thermodynamics">
+                <div class="flex items-center mb-4">
+                    <span class="text-3xl ml-3">💨</span>
+                    <h3 class="text-xl font-bold text-gray-800">قانون گاز ایده‌آل</h3>
+                </div>
+                <div class="bg-red-50 p-4 rounded-xl mb-3">
+                    <div class="text-center text-lg">$PV = nRT$</div>
+                </div>
+                <p class="text-gray-600 text-sm">P: فشار، V: حجم، n: تعداد مول، R: ثابت گاز، T: دما</p>
+            </div>
+
+            <!-- Electricity Formulas -->
+            <div class="formula-card bg-white rounded-2xl p-6 shadow-lg" data-category="electricity">
+                <div class="flex items-center mb-4">
+                    <span class="text-3xl ml-3">⚡</span>
+                    <h3 class="text-xl font-bold text-gray-800">قانون اهم</h3>
+                </div>
+                <div class="bg-yellow-50 p-4 rounded-xl mb-3">
+                    <div class="text-center text-lg">$V = IR$</div>
+                </div>
+                <p class="text-gray-600 text-sm">V: ولتاژ، I: جریان، R: مقاومت</p>
+            </div>
+
+            <div class="formula-card bg-white rounded-2xl p-6 shadow-lg" data-category="electricity">
+                <div class="flex items-center mb-4">
+                    <span class="text-3xl ml-3">🔋</span>
+                    <h3 class="text-xl font-bold text-gray-800">توان الکتریکی</h3>
+                </div>
+                <div class="bg-yellow-50 p-4 rounded-xl mb-3">
+                    <div class="text-center text-lg">$P = VI = I^2R = \frac{V^2}{R}$</div>
+                </div>
+                <p class="text-gray-600 text-sm">P: توان، V: ولتاژ، I: جریان، R: مقاومت</p>
+            </div>
+
+            <div class="formula-card bg-white rounded-2xl p-6 shadow-lg" data-category="electricity">
+                <div class="flex items-center mb-4">
+                    <span class="text-3xl ml-3">🧲</span>
+                    <h3 class="text-xl font-bold text-gray-800">نیروی مغناطیسی</h3>
+                </div>
+                <div class="bg-yellow-50 p-4 rounded-xl mb-3">
+                    <div class="text-center text-lg">$F = BIL\sin\theta$</div>
+                </div>
+                <p class="text-gray-600 text-sm">F: نیرو، B: میدان مغناطیسی، I: جریان، L: طول سیم</p>
+            </div>
+
+            <!-- Optics Formulas -->
+            <div class="formula-card bg-white rounded-2xl p-6 shadow-lg" data-category="optics">
+                <div class="flex items-center mb-4">
+                    <span class="text-3xl ml-3">🔍</span>
+                    <h3 class="text-xl font-bold text-gray-800">قانون عدسی</h3>
+                </div>
+                <div class="bg-purple-50 p-4 rounded-xl mb-3">
+                    <div class="text-center text-lg">$\frac{1}{f} = \frac{1}{d_o} + \frac{1}{d_i}$</div>
+                </div>
+                <p class="text-gray-600 text-sm">f: فاصله کانونی، d₀: فاصله جسم، dᵢ: فاصله تصویر</p>
+            </div>
+
+            <div class="formula-card bg-white rounded-2xl p-6 shadow-lg" data-category="optics">
+                <div class="flex items-center mb-4">
+                    <span class="text-3xl ml-3">🌈</span>
+                    <h3 class="text-xl font-bold text-gray-800">قانون اسنل</h3>
+                </div>
+                <div class="bg-purple-50 p-4 rounded-xl mb-3">
+                    <div class="text-center text-lg">$n_1\sin\theta_1 = n_2\sin\theta_2$</div>
+                </div>
+                <p class="text-gray-600 text-sm">n: ضریب شکست، θ: زاویه تابش/انکسار</p>
+            </div>
+
+            <div class="formula-card bg-white rounded-2xl p-6 shadow-lg" data-category="optics">
+                <div class="flex items-center mb-4">
+                    <span class="text-3xl ml-3">📏</span>
+                    <h3 class="text-xl font-bold text-gray-800">بزرگنمایی</h3>
+                </div>
+                <div class="bg-purple-50 p-4 rounded-xl mb-3">
+                    <div class="text-center text-lg">$m = \frac{h_i}{h_o} = -\frac{d_i}{d_o}$</div>
+                </div>
+                <p class="text-gray-600 text-sm">m: بزرگنمایی، h: ارتفاع، d: فاصله</p>
+            </div>
+
+            <!-- Modern Physics Formulas -->
+            <div class="formula-card bg-white rounded-2xl p-6 shadow-lg" data-category="modern">
+                <div class="flex items-center mb-4">
+                    <span class="text-3xl ml-3">⚛️</span>
+                    <h3 class="text-xl font-bold text-gray-800">انرژی فوتون</h3>
+                </div>
+                <div class="bg-indigo-50 p-4 rounded-xl mb-3">
+                    <div class="text-center text-lg">$E = hf = \frac{hc}{\lambda}$</div>
+                </div>
+                <p class="text-gray-600 text-sm">E: انرژی، h: ثابت پلانک، f: فرکانس، c: سرعت نور</p>
+            </div>
+
+            <div class="formula-card bg-white rounded-2xl p-6 shadow-lg" data-category="modern">
+                <div class="flex items-center mb-4">
+                    <span class="text-3xl ml-3">🚀</span>
+                    <h3 class="text-xl font-bold text-gray-800">معادله انیشتین</h3>
+                </div>
+                <div class="bg-indigo-50 p-4 rounded-xl mb-3">
+                    <div class="text-center text-lg">$E = mc^2$</div>
+                </div>
+                <p class="text-gray-600 text-sm">E: انرژی، m: جرم، c: سرعت نور</p>
+            </div>
+
+            <div class="formula-card bg-white rounded-2xl p-6 shadow-lg" data-category="modern">
+                <div class="flex items-center mb-4">
+                    <span class="text-3xl ml-3">🌊</span>
+                    <h3 class="text-xl font-bold text-gray-800">طول موج دوبروی</h3>
+                </div>
+                <div class="bg-indigo-50 p-4 rounded-xl mb-3">
+                    <div class="text-center text-lg">$\lambda = \frac{h}{p} = \frac{h}{mv}$</div>
+                </div>
+                <p class="text-gray-600 text-sm">λ: طول موج، h: ثابت پلانک، p: تکانه، m: جرم، v: سرعت</p>
+            </div>
+        </div>
+
+        <!-- No Results Message -->
+        <div id="noResults" class="text-center py-12 hidden">
+            <div class="text-6xl mb-4">🔍</div>
+            <h3 class="text-2xl font-bold text-gray-600 mb-2">فرمولی یافت نشد</h3>
+            <p class="text-gray-500">لطفاً کلمه کلیدی دیگری امتحان کنید</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 mt-12">
+        <div class="container mx-auto px-4 text-center">
+            <div class="text-4xl mb-4">📚</div>
+            <p class="text-lg mb-2">مجموعه کامل فرمول‌های فیزیک دبیرستان</p>
+            <p class="text-gray-400">برای موفقیت در امتحانات و کنکور</p>
+        </div>
+    </footer>
+
+    <script>
+        // Search functionality
+        const searchInput = document.getElementById('searchInput');
+        const formulasContainer = document.getElementById('formulasContainer');
+        const noResults = document.getElementById('noResults');
+        const allCards = document.querySelectorAll('.formula-card');
+
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase().trim();
+            let visibleCount = 0;
+
+            allCards.forEach(card => {
+                const title = card.querySelector('h3').textContent.toLowerCase();
+                const description = card.querySelector('p').textContent.toLowerCase();
+                
+                if (title.includes(searchTerm) || description.includes(searchTerm) || searchTerm === '') {
+                    card.style.display = 'block';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            noResults.classList.toggle('hidden', visibleCount > 0);
+        });
+
+        // Category filtering
+        function filterCategory(category) {
+            // Update active button
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // Filter cards
+            let visibleCount = 0;
+            allCards.forEach(card => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.style.display = 'block';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            // Clear search
+            searchInput.value = '';
+            noResults.classList.toggle('hidden', visibleCount > 0);
+        }
+
+        // Add hover effects to formula cards
+        allCards.forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Render MathJax after page load
+        window.addEventListener('load', function() {
+            if (window.MathJax) {
+                MathJax.typesetPromise();
+            }
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96c1ab15c0b9d2b7',t:'MTc1NDY4Mzk0My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
